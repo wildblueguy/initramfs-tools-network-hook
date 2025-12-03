@@ -1,3 +1,8 @@
+> [!TIP]
+> The previous 2 commits to this repository were an announcement by @sctz, relinquishing maintainer status, preceded by a fix for Ubuntu 22.04. I'd just like to confirm for everyone that bonding continues to function for Ubuntu 24.04 LTS (and likely the corresponding Debian version), with the minor caveat that you **must** configure via `/etc/initramfs-tools/conf.d/*.conf`. Configuring via `/etc/initramfs-tools/initramfs.conf` results in 'file not found' errors for `/etc/initramfs-tools/conf.d/*.conf`. I've modified the **Add Bond Interface** instructions accordingly.
+>
+> @wildblueguy
+
 # initramfs-tools-network-hook
 
 **Because I'm not using this hook by myself I'm not able to maintain this repository anymore. Please fork this repository and continue working on it.** 
@@ -22,7 +27,7 @@ Add the following Line to your `/etc/initramfs-tools/initramfs.conf` or in a fil
 VLAN="eth0:221 eth0:222"
 ```
 # Add Bond Interface
-Add the following Line to your `/etc/initramfs-tools/initramfs.conf` or in a file in `/etc/initramfs-tools/conf.d/*.conf` to enslave eth0 and eth1 to bond0 and eth2 and eth3 to bond1.
+Add the following Line to a file in `/etc/initramfs-tools/conf.d/*.conf`, e.g. `/etc/initramfs-tools/conf.d/bond.conf`, to enslave eth0 and eth1 to bond0 and eth2 and eth3 to bond1.
 ```
 BOND="bond0:eth0,eth1 bond1:eth2,eth3"
 ```
